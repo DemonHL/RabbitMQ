@@ -34,7 +34,5 @@ public class receive {
 
             System.out.println("------[Receive] msg :"+msgStr);
         }
-
-
     }
 }
