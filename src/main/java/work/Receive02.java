@@ -26,6 +26,7 @@ public class Receive02 {
 
         //同一时间只会发一条消息给消费者
         channel.basicQos(1);
+
         DefaultConsumer consumer = new DefaultConsumer(channel) {
 
             @Override
@@ -37,7 +38,11 @@ public class Receive02 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                //返回确认状态
+                /**
+                 * 手动确认
+                 * 第1个参数：通过发送Tag标识来确认消费的是消息队列中的哪个消息
+                 * 第2个参数：是否开启多个消息同时确认，这里我们设置了每次只能消费一个消息，因此不需要开启
+                 */
                 channel.basicAck(envelope.getDeliveryTag(),false);
                 System.out.println("[2] done ");
             }

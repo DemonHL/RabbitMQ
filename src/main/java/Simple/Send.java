@@ -29,7 +29,15 @@ public class Send {
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         String msg = "Hello Simple Queue !";
 
-        //exchange routingKey props  body
+        /*
+         * 向server发布一条消息
+         * 参数1：exchange名字，若为空则使用默认的exchange
+         * 参数2：routing key
+         * 参数3：其他的属性
+         * 参数4：消息体
+         * RabbitMQ默认有一个exchange，叫default exchange，它用一个空字符串表示，它是direct exchange类型，
+         * 任何发往这个exchange的消息都会被路由到routing key的名字对应的队列上，如果没有对应的队列，则消息会被丢弃
+         */
         channel.basicPublish("",QUEUE_NAME,null,msg.getBytes());
 
         System.out.println("------send msg :"+ msg);

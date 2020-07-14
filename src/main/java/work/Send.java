@@ -24,6 +24,12 @@ public class Send {
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         for (int i = 0; i < 30; i++) {
             String msg="hello work queue"+i;
+            /**
+             *  第一个参数为  exchange:交换机名称
+             *  第二个参数为  routingKey:路由键，
+             *  第三个参数为  props:消息属性集，包含14个属性成员，如持久化，优先级，过期时间等。
+             *  第四个参数为  body:消息体，需要发送的消息。
+             **/
             channel.basicPublish("",QUEUE_NAME,null,msg.getBytes());
         }
         // 释放连接

@@ -14,8 +14,10 @@ import com.rabbitmq.client.*;
 import utils.ConnectionUtils;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Receive01 {
+
     public static final  String QUEUE_NAME = "test_work_queue";
 
     public static void main(String[] args) throws IOException {
@@ -41,8 +43,9 @@ public class Receive01 {
                     //返回确认状态
                     channel.basicAck(envelope.getDeliveryTag(),false);
                     System.out.println("[1] done ");
+
                 }
-            }
+                }
         };
         //手动确认消息
         boolean autoAck = false;
