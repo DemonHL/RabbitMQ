@@ -25,7 +25,15 @@ public class Send {
         System.out.println("ip地址为"+ip);
         //创建一个通道
         Channel channel = conn.createChannel();
-        //声明一个队列
+        /**
+         声明一个队列
+         durable:持久化
+         mnesia:数据库【有专门的表去保存我们的队列声明】
+         exclusive：排外
+         i:当前定义的队列是connection中的chanenl是共享的，其他的connection是访问不到的；
+         ii:当connection.close时，queue就被删除。
+         autoDelete：自动删除：当最后一个consumer断开之后，autodelete被触发；
+         **/
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         String msg = "Hello Simple Queue !";
 
